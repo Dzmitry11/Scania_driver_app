@@ -2,8 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/scania-favicon-v3.svg?v=3" />
-    <link rel="shortcut icon" href="/scania-favicon-v3.svg?v=3" />
+    <link rel="icon" type="image/x-icon" href="/scania-favicon-v5.ico?v=5" />
+    <link rel="alternate icon" type="image/svg+xml" href="/scania-favicon-v3.svg?v=5" />
+    <link rel="shortcut icon" href="/scania-favicon-v5.ico?v=5" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scania Driver Companion</title>
     <meta
@@ -29,19 +30,6 @@
 
   <body>
     <div id="root"></div>
-    <script>
-      (function forceFaviconRefresh() {
-        var href = '/scania-favicon-v3.svg?v=3&ts=' + Date.now();
-        var link = document.querySelector('link[rel="icon"]');
-        if (!link) {
-          link = document.createElement('link');
-          link.setAttribute('rel', 'icon');
-          document.head.appendChild(link);
-        }
-        link.setAttribute('type', 'image/svg+xml');
-        link.setAttribute('href', href);
-      })();
-    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

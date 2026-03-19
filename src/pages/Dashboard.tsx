@@ -1,13 +1,22 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import AppLayout from '@/components/AppLayout';
 import { getProfile, getMorningLogs, getMiddayLogs, getEveningLogs, getBPReadings, getHabitLogs, getIllnessEpisodes, getHeightWeights } from '@/lib/storage';
 import { computeRiskSignals } from '@/lib/riskSignals';
 import { useNavigate } from 'react-router-dom';
 import { Sun, Cloud, Moon, Activity, AlertTriangle, Heart, ClipboardList, Thermometer } from 'lucide-react';
 import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const [aboutOpen, setAboutOpen] = useState(false);
   const profile = getProfile();
   const today = new Date().toISOString().split('T')[0];
 
@@ -47,6 +56,43 @@ const Dashboard = () => {
             Scania / TRATON Driver Wellbeing & Safety Companion
           </p>
           {age && <p className="text-xs text-muted-foreground mt-1">{age} years old • {profile?.bloodGroup || 'Blood group not set'}</p>}
+        </div>
+
+        <div className="flex justify-end">
+          <Dialog open={aboutOpen} onOpenChange={setAboutOpen}>
+            <DialogTrigger asChild>
+              <Button variant="outline" size="sm">About</Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-xl max-h-[80vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle>About Driver Companion</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-3 text-sm text-muted-foreground">
+                <p>
+                  This app was created to improve fuel efficiency, reliability, and safety for
+                  Scania trucks by working with the most important variable on the road: the
+                  driver.
+                </p>
+                <p>
+                  A driver&apos;s condition - fatigue, sleep, stress, and wellbeing strongly
+                  influences driving style: smoother driving means lower fuel consumption, less
+                  wear and tear, fewer incidents, and ultimately stronger customer loyalty.
+                </p>
+                <p>
+                  The solution is a Driver Wellbeing &amp; Safety Companion: a lightweight app
+                  that takes under one minute per check-in. Drivers do quick pre-shift, mid-shift,
+                  and post-shift self-checks, and the app turns that into personal trends and
+                  conservative, explainable safety flags - non-diagnostic, no treatment advice,
+                  just documentation and safe next steps.
+                </p>
+                <p>
+                  For TRATON/Scania, this enables earlier detection of deterioration, safer choices
+                  like breaks or escalation when needed, more stable operations, and a stronger
+                  safety culture - with privacy-first, consent-based data sharing.
+                </p>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         {/* Urgent alerts */}
