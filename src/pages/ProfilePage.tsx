@@ -125,18 +125,18 @@ const ProfilePage = () => {
         <Card className="p-4 space-y-3">
           <h3 className="font-semibold">Work & Preferences</h3>
           <div>
-            <Label>Work Type</Label>
+            <Label>Primary Shift Type</Label>
             <Select value={profile.workType} onValueChange={v => update('workType', v)}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>
-                <SelectItem value="sedentary">Sedentary</SelectItem>
-                <SelectItem value="physical">Physically Demanding</SelectItem>
-                <SelectItem value="harmful">Harmful Exposure</SelectItem>
+                <SelectItem value="sedentary">Long-haul highway</SelectItem>
+                <SelectItem value="physical">Distribution / city driving</SelectItem>
+                <SelectItem value="harmful">Heavy-duty / demanding environment</SelectItem>
               </SelectContent>
             </Select>
           </div>
           <div>
-            <Label>Load Level</Label>
+            <Label>Typical Operational Load</Label>
             <Select value={profile.loadLevel} onValueChange={v => update('loadLevel', v)}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent>

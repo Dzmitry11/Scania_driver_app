@@ -88,17 +88,17 @@ const DailyLog = () => {
   };
 
   return (
-    <AppLayout title="Daily Log">
+    <AppLayout title="Shift Check-ins">
       <Tabs defaultValue={initialTab} className="animate-fade-in">
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="morning" className="gap-1">
-            <Sun className="h-3.5 w-3.5" />{hasMorning && <Check className="h-3 w-3" />}Morning
+            <Sun className="h-3.5 w-3.5" />{hasMorning && <Check className="h-3 w-3" />}Pre-shift
           </TabsTrigger>
           <TabsTrigger value="midday" className="gap-1">
-            <Cloud className="h-3.5 w-3.5" />{hasMidday && <Check className="h-3 w-3" />}Midday
+            <Cloud className="h-3.5 w-3.5" />{hasMidday && <Check className="h-3 w-3" />}Mid-shift
           </TabsTrigger>
           <TabsTrigger value="evening" className="gap-1">
-            <Moon className="h-3.5 w-3.5" />{hasEvening && <Check className="h-3 w-3" />}Evening
+            <Moon className="h-3.5 w-3.5" />{hasEvening && <Check className="h-3 w-3" />}Post-shift
           </TabsTrigger>
         </TabsList>
 
@@ -106,15 +106,15 @@ const DailyLog = () => {
           {hasMorning ? (
             <div className="text-center py-8 text-muted-foreground">
               <Check className="h-8 w-8 mx-auto mb-2 text-primary" />
-              <p>Morning check-in completed!</p>
+              <p>Pre-shift check-in completed.</p>
             </div>
           ) : (
             <>
               <div><Label>Wake-up Time</Label><Input type="time" value={wakeUp} onChange={e => setWakeUp(e.target.value)} /></div>
-              <div><Label>Breakfast</Label><Input value={breakfast} onChange={e => setBreakfast(e.target.value)} placeholder="What did you have?" /><TagSelector tags={breakfastTags} setTags={setBreakfastTags} /></div>
-              <div><Label>Sleep Quality ({sleepQuality[0]}/10)</Label><Slider value={sleepQuality} onValueChange={setSleepQuality} min={1} max={10} step={1} /></div>
-              <div><Label>Wellbeing ({morningWellbeing[0]}/10)</Label><Slider value={morningWellbeing} onValueChange={setMorningWellbeing} min={1} max={10} step={1} /></div>
-              <Button onClick={saveMorning} className="w-full">Save Morning Log</Button>
+              <div><Label>Pre-shift meal</Label><Input value={breakfast} onChange={e => setBreakfast(e.target.value)} placeholder="What did you eat before driving?" /><TagSelector tags={breakfastTags} setTags={setBreakfastTags} /></div>
+              <div><Label>Sleep quality before shift ({sleepQuality[0]}/10)</Label><Slider value={sleepQuality} onValueChange={setSleepQuality} min={1} max={10} step={1} /></div>
+              <div><Label>Fit-to-drive feeling ({morningWellbeing[0]}/10)</Label><Slider value={morningWellbeing} onValueChange={setMorningWellbeing} min={1} max={10} step={1} /></div>
+              <Button onClick={saveMorning} className="w-full">Save Pre-shift Check-in</Button>
             </>
           )}
         </TabsContent>
@@ -123,13 +123,13 @@ const DailyLog = () => {
           {hasMidday ? (
             <div className="text-center py-8 text-muted-foreground">
               <Check className="h-8 w-8 mx-auto mb-2 text-primary" />
-              <p>Midday check-in completed!</p>
+              <p>Mid-shift check-in completed.</p>
             </div>
           ) : (
             <>
-              <div><Label>Lunch</Label><Input value={lunch} onChange={e => setLunch(e.target.value)} placeholder="What did you have?" /><TagSelector tags={lunchTags} setTags={setLunchTags} /></div>
-              <div><Label>Stress Level ({middayStress[0]}/10)</Label><Slider value={middayStress} onValueChange={setMiddayStress} min={1} max={10} step={1} /></div>
-              <Button onClick={saveMidday} className="w-full">Save Midday Log</Button>
+              <div><Label>Mid-shift meal / hydration</Label><Input value={lunch} onChange={e => setLunch(e.target.value)} placeholder="Fuel, water, coffee..." /><TagSelector tags={lunchTags} setTags={setLunchTags} /></div>
+              <div><Label>Stress and workload ({middayStress[0]}/10)</Label><Slider value={middayStress} onValueChange={setMiddayStress} min={1} max={10} step={1} /></div>
+              <Button onClick={saveMidday} className="w-full">Save Mid-shift Check-in</Button>
             </>
           )}
         </TabsContent>
@@ -138,24 +138,24 @@ const DailyLog = () => {
           {hasEvening ? (
             <div className="text-center py-8 text-muted-foreground">
               <Check className="h-8 w-8 mx-auto mb-2 text-primary" />
-              <p>Evening check-in completed!</p>
+              <p>Post-shift check-in completed.</p>
             </div>
           ) : (
             <>
-              <div><Label>Dinner</Label><Input value={dinner} onChange={e => setDinner(e.target.value)} placeholder="What did you have?" /><TagSelector tags={dinnerTags} setTags={setDinnerTags} /></div>
-              <div><Label>Stress Level ({eveningStress[0]}/10)</Label><Slider value={eveningStress} onValueChange={setEveningStress} min={1} max={10} step={1} /></div>
+              <div><Label>Post-shift meal</Label><Input value={dinner} onChange={e => setDinner(e.target.value)} placeholder="How did you recover after shift?" /><TagSelector tags={dinnerTags} setTags={setDinnerTags} /></div>
+              <div><Label>End-of-shift stress ({eveningStress[0]}/10)</Label><Slider value={eveningStress} onValueChange={setEveningStress} min={1} max={10} step={1} /></div>
               <div className="grid grid-cols-3 gap-2">
                 <div><Label>Steps</Label><Input type="number" value={steps} onChange={e => setSteps(e.target.value)} /></div>
                 <div><Label>Exercise (min)</Label><Input type="number" value={exerciseMin} onChange={e => setExerciseMin(e.target.value)} /></div>
-                <div><Label>Screen (min)</Label><Input type="number" value={computerMin} onChange={e => setComputerMin(e.target.value)} /></div>
+                <div><Label>Seat/screen (min)</Label><Input type="number" value={computerMin} onChange={e => setComputerMin(e.target.value)} /></div>
               </div>
-              <div><Label>Wellbeing ({wellbeing[0]}/10)</Label><Slider value={wellbeing} onValueChange={setWellbeing} min={1} max={10} step={1} /></div>
+              <div><Label>Overall wellbeing ({wellbeing[0]}/10)</Label><Slider value={wellbeing} onValueChange={setWellbeing} min={1} max={10} step={1} /></div>
               <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
-                <Label>Any symptoms today?</Label>
+                <Label>Any symptoms affecting safe driving today?</Label>
                 <Switch checked={hasSymptoms} onCheckedChange={setHasSymptoms} />
               </div>
-              {hasSymptoms && <Textarea value={symptomDesc} onChange={e => setSymptomDesc(e.target.value)} placeholder="Briefly describe symptoms..." />}
-              <Button onClick={saveEvening} className="w-full">Save Evening Log</Button>
+              {hasSymptoms && <Textarea value={symptomDesc} onChange={e => setSymptomDesc(e.target.value)} placeholder="Briefly describe what you noticed..." />}
+              <Button onClick={saveEvening} className="w-full">Save Post-shift Check-in</Button>
             </>
           )}
         </TabsContent>

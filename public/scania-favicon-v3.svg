@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Scania Driver Companion">
+  <rect width="64" height="64" rx="10" fill="#041E42" />
+  <path d="M12 34h28v11H12z" fill="#FFFFFF" />
+  <path d="M40 28h8l6 6v11h-14z" fill="#5DA6FF" />
+  <circle cx="21" cy="48" r="6" fill="#FFFFFF" />
+  <circle cx="47" cy="48" r="6" fill="#FFFFFF" />
+  <circle cx="21" cy="48" r="3" fill="#041E42" />
+  <circle cx="47" cy="48" r="3" fill="#041E42" />
+</svg>

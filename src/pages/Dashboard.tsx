@@ -36,14 +36,17 @@ const Dashboard = () => {
   const checkinsDone = [todayMorning, todayMidday, todayEvening].filter(Boolean).length;
 
   return (
-    <AppLayout title="Dashboard">
+    <AppLayout title="Driver Companion">
       <div className="space-y-4 animate-fade-in">
         {/* Greeting */}
         <div className="bg-primary/5 rounded-xl p-4">
           <h2 className="text-xl font-bold text-foreground">
-            Hello, {profile?.firstName || 'there'}! 👋
+            Hello, {profile?.firstName || 'there'}!
           </h2>
-          {age && <p className="text-sm text-muted-foreground mt-1">{age} years old • {profile?.bloodGroup || 'Blood group not set'}</p>}
+          <p className="text-sm text-muted-foreground mt-1">
+            Scania / TRATON Driver Wellbeing & Safety Companion
+          </p>
+          {age && <p className="text-xs text-muted-foreground mt-1">{age} years old • {profile?.bloodGroup || 'Blood group not set'}</p>}
         </div>
 
         {/* Urgent alerts */}
@@ -51,9 +54,9 @@ const Dashboard = () => {
           <Card className="border-destructive bg-destructive/5 p-4" onClick={() => navigate('/trends')}>
             <div className="flex items-center gap-2 text-destructive font-semibold text-sm">
               <AlertTriangle className="h-4 w-4" />
-              {urgentSignals.length} urgent risk signal{urgentSignals.length > 1 ? 's' : ''} detected
+              {urgentSignals.length} conservative safety flag{urgentSignals.length > 1 ? 's' : ''} detected
             </div>
-            <p className="text-xs text-muted-foreground mt-1">Tap to view details</p>
+            <p className="text-xs text-muted-foreground mt-1">Tap to review and decide next safe step</p>
           </Card>
         )}
 
@@ -70,12 +73,12 @@ const Dashboard = () => {
 
         {/* Today's check-ins */}
         <div>
-          <h3 className="text-sm font-semibold text-muted-foreground mb-2">TODAY'S CHECK-INS ({checkinsDone}/3)</h3>
+          <h3 className="text-sm font-semibold text-muted-foreground mb-2">TODAY'S SHIFT CHECK-INS ({checkinsDone}/3)</h3>
           <div className="grid grid-cols-3 gap-2">
             {[
-              { icon: Sun, label: 'Morning', done: !!todayMorning, path: '/log?tab=morning' },
-              { icon: Cloud, label: 'Midday', done: !!todayMidday, path: '/log?tab=midday' },
-              { icon: Moon, label: 'Evening', done: !!todayEvening, path: '/log?tab=evening' },
+              { icon: Sun, label: 'Pre-shift', done: !!todayMorning, path: '/log?tab=morning' },
+              { icon: Cloud, label: 'Mid-shift', done: !!todayMidday, path: '/log?tab=midday' },
+              { icon: Moon, label: 'Post-shift', done: !!todayEvening, path: '/log?tab=evening' },
             ].map(({ icon: Icon, label, done, path }) => (
               <Card key={label}
                 className={`p-3 text-center cursor-pointer transition-colors ${done ? 'bg-primary/5 border-primary/30' : 'bg-card'}`}
@@ -91,12 +94,12 @@ const Dashboard = () => {
 
         {/* Quick actions */}
         <div>
-          <h3 className="text-sm font-semibold text-muted-foreground mb-2">QUICK ACTIONS</h3>
+          <h3 className="text-sm font-semibold text-muted-foreground mb-2">DRIVER TOOLS</h3>
           <div className="grid grid-cols-2 gap-2">
             {[
               { icon: Activity, label: 'Weekly Vitals', path: '/vitals' },
-              { icon: ClipboardList, label: 'Habits', path: '/habits' },
-              { icon: Thermometer, label: 'Illness Mode', path: '/illness' },
+              { icon: ClipboardList, label: 'Lifestyle Habits', path: '/habits' },
+              { icon: Thermometer, label: 'Illness Documentation', path: '/illness' },
               { icon: Heart, label: "Women's Health", path: '/womens-health', show: profile?.womensHealthEnabled },
             ]
               .filter(a => a.show !== false)
@@ -112,7 +115,7 @@ const Dashboard = () => {
         {/* Risk signals summary */}
         {riskSignals.length > 0 && (
           <div>
-            <h3 className="text-sm font-semibold text-muted-foreground mb-2">RISK SIGNALS ({riskSignals.length})</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground mb-2">SAFETY FLAGS ({riskSignals.length})</h3>
             <div className="space-y-2">
               {riskSignals.slice(0, 3).map(s => (
                 <Card key={s.id} className={`p-3 ${s.severity === 'urgent' ? 'border-destructive bg-destructive/5' : s.severity === 'warning' ? 'border-risk bg-risk-bg' : 'bg-secondary/50'}`}>
@@ -134,7 +137,7 @@ const Dashboard = () => {
           const last = eveningLogs[eveningLogs.length - 1];
           return (
             <Card className="p-4">
-              <h3 className="text-sm font-semibold text-muted-foreground mb-2">LATEST EVENING LOG</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground mb-2">LATEST POST-SHIFT CHECK-IN</h3>
               <div className="grid grid-cols-3 gap-3 text-center">
                 <div>
                   <p className="text-lg font-bold text-foreground">{last.steps.toLocaleString()}</p>

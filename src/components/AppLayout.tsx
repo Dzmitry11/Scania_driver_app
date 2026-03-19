@@ -10,8 +10,8 @@ interface AppLayoutProps {
 const AppLayout = ({ children, title }: AppLayoutProps) => (
   <div className="min-h-screen bg-background flex flex-col">
     {title && (
-      <header className="sticky top-0 z-40 bg-card border-b border-border px-4 py-3">
-        <h1 className="text-lg font-bold text-foreground text-center">{title}</h1>
+      <header className="sticky top-0 z-40 bg-primary border-b border-primary px-4 py-3">
+        <h1 className="text-lg font-bold text-primary-foreground text-center">{title}</h1>
       </header>
     )}
     <main className="flex-1 overflow-y-auto px-4 py-4 pb-36 max-w-lg mx-auto w-full">

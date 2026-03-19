@@ -8,7 +8,7 @@ import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { saveProfile, saveHeightWeight } from '@/lib/storage';
 import type { UserProfile } from '@/types/health';
-import { Heart, Shield } from 'lucide-react';
+import { Truck, Shield } from 'lucide-react';
 
 const ALLERGY_OPTIONS = ['Pollen', 'Dust', 'Nuts', 'Shellfish', 'Dairy', 'Gluten', 'Penicillin', 'Latex'];
 const CONDITION_OPTIONS = ['Asthma', 'Diabetes', 'Heart condition', 'Thyroid', 'Epilepsy', 'Arthritis'];
@@ -63,20 +63,20 @@ const Onboarding = () => {
     // Welcome
     <div key="welcome" className="flex flex-col items-center text-center gap-6 animate-fade-in">
       <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center">
-        <Heart className="h-10 w-10 text-primary" />
+        <Truck className="h-10 w-10 text-primary" />
       </div>
-      <h2 className="text-2xl font-bold text-foreground">Personal Medical Assistant</h2>
-      <p className="text-muted-foreground">Track your health, document symptoms, and generate clinician-ready reports. This app does not diagnose — it helps you record and understand your health data.</p>
+      <h2 className="text-2xl font-bold text-foreground">Driver Wellbeing & Safety Companion</h2>
+      <p className="text-muted-foreground">Built for Scania/TRATON truck drivers. Complete quick pre-shift, mid-shift, and post-shift check-ins in under one minute to support safer and smoother driving.</p>
       <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted rounded-lg p-3">
         <Shield className="h-4 w-4 shrink-0" />
-        <span>Your data stays on your device. No data is shared without your consent.</span>
+        <span>Privacy first: your data stays on your device and is shared only with your consent.</span>
       </div>
       <Button onClick={() => setStep(1)} className="w-full">Get Started</Button>
     </div>,
 
     // Basic info
     <div key="basic" className="space-y-4 animate-fade-in">
-      <h2 className="text-xl font-bold">Basic Information</h2>
+      <h2 className="text-xl font-bold">Driver Information</h2>
       <div className="grid grid-cols-2 gap-3">
         <div><Label>First Name</Label><Input value={profile.firstName || ''} onChange={e => update('firstName', e.target.value)} /></div>
         <div><Label>Last Name</Label><Input value={profile.lastName || ''} onChange={e => update('lastName', e.target.value)} /></div>
@@ -103,7 +103,7 @@ const Onboarding = () => {
 
     // Health background
     <div key="health" className="space-y-4 animate-fade-in">
-      <h2 className="text-xl font-bold">Health Background</h2>
+      <h2 className="text-xl font-bold">Wellbeing Background</h2>
       <div>
         <Label>Allergies</Label>
         <div className="flex flex-wrap gap-2 mt-1">
@@ -133,20 +133,20 @@ const Onboarding = () => {
 
     // Work & preferences
     <div key="work" className="space-y-4 animate-fade-in">
-      <h2 className="text-xl font-bold">Work & Preferences</h2>
+      <h2 className="text-xl font-bold">Driving Context</h2>
       <div>
-        <Label>Work Type</Label>
+        <Label>Primary Shift Type</Label>
         <Select value={profile.workType} onValueChange={v => update('workType', v)}>
           <SelectTrigger><SelectValue /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="sedentary">Sedentary</SelectItem>
-            <SelectItem value="physical">Physically Demanding</SelectItem>
-            <SelectItem value="harmful">Harmful Exposure</SelectItem>
+            <SelectItem value="sedentary">Long-haul highway</SelectItem>
+            <SelectItem value="physical">Distribution / city driving</SelectItem>
+            <SelectItem value="harmful">Heavy-duty / demanding environment</SelectItem>
           </SelectContent>
         </Select>
       </div>
       <div>
-        <Label>Load Level</Label>
+        <Label>Typical Operational Load</Label>
         <Select value={profile.loadLevel} onValueChange={v => update('loadLevel', v)}>
           <SelectTrigger><SelectValue /></SelectTrigger>
           <SelectContent>
@@ -157,7 +157,7 @@ const Onboarding = () => {
         </Select>
       </div>
       <div className="flex items-center justify-between p-3 bg-secondary rounded-lg">
-        <Label>Enable Women's Health Tracking</Label>
+        <Label>Enable women&apos;s health tracking</Label>
         <Switch checked={profile.womensHealthEnabled || false} onCheckedChange={v => update('womensHealthEnabled', v)} />
       </div>
       <Button onClick={handleFinish} className="w-full">Complete Setup</Button>
