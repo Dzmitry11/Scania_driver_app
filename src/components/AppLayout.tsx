@@ -14,7 +14,7 @@ const AppLayout = ({ children, title }: AppLayoutProps) => (
         <div className="relative max-w-lg mx-auto">
           <h1 className="text-lg font-bold text-primary-foreground text-center">{title}</h1>
           <img
-            src="/scania-simbol.png"
+            src={`${import.meta.env.BASE_URL}scania-simbol.png`}
             alt="Scania logo"
             className="absolute right-0 top-1/2 h-7 w-auto -translate-y-1/2 object-contain"
           />
