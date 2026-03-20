@@ -167,8 +167,8 @@ const Onboarding = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-6">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center p-6">
+      <div className="w-full max-w-md bg-background/80 backdrop-blur-[2px] rounded-2xl border border-border/70 p-5 shadow-lg">
         {step > 0 && (
           <div className="flex gap-1 mb-6">
             {[1, 2, 3].map(s => (

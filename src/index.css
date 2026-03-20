@@ -96,10 +96,25 @@
   * {
     @apply border-border;
   }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
     font-family: 'Scania Sans', 'ScaniaSans', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
+    background-color: hsl(var(--background));
+    background-image:
+      linear-gradient(rgba(245, 248, 252, 0.76), rgba(245, 248, 252, 0.76)),
+      url('/scania-truck-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   }
 }
 
