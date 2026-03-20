@@ -1,6 +1,7 @@
 export interface UserProfile {
   firstName: string;
   lastName: string;
+  vin: string;
   sex: 'male' | 'female' | 'other';
   dateOfBirth: string; // ISO date
   bloodGroup: string;

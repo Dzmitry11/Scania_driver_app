@@ -34,6 +34,7 @@ const Onboarding = () => {
     const full: UserProfile = {
       firstName: profile.firstName || '',
       lastName: profile.lastName || '',
+      vin: profile.vin || '',
       sex: profile.sex || 'male',
       dateOfBirth: profile.dateOfBirth || '',
       bloodGroup: profile.bloodGroup || '',
@@ -81,6 +82,7 @@ const Onboarding = () => {
         <div><Label>First Name</Label><Input value={profile.firstName || ''} onChange={e => update('firstName', e.target.value)} /></div>
         <div><Label>Last Name</Label><Input value={profile.lastName || ''} onChange={e => update('lastName', e.target.value)} /></div>
       </div>
+      <div><Label>Truck VIN</Label><Input value={profile.vin || ''} onChange={e => update('vin', e.target.value)} placeholder="e.g. YS2R6X2000..." /></div>
       <div><Label>Date of Birth</Label><Input type="date" value={profile.dateOfBirth || ''} onChange={e => update('dateOfBirth', e.target.value)} /></div>
       <div>
         <Label>Sex</Label>

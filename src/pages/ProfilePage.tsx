@@ -18,7 +18,7 @@ const CONDITION_OPTIONS = ['Asthma', 'Diabetes', 'Heart condition', 'Thyroid', '
 const ProfilePage = () => {
   const existingProfile = getProfile();
   const [profile, setProfile] = useState<UserProfile>(existingProfile || {
-    firstName: '', lastName: '', sex: 'male', dateOfBirth: '',
+    firstName: '', lastName: '', vin: '', sex: 'male', dateOfBirth: '',
     bloodGroup: '', allergies: [], allergyNotes: '', chronicConditions: [],
     chronicConditionNotes: '', workType: 'sedentary', loadLevel: 'medium',
     womensHealthEnabled: false, onboardingComplete: true,
@@ -91,6 +91,7 @@ const ProfilePage = () => {
               </Select>
             </div>
           </div>
+          <div><Label>Truck VIN</Label><Input value={profile.vin} onChange={e => update('vin', e.target.value)} placeholder="e.g. YS2R6X2000..." /></div>
           <div><Label>Blood Group</Label><Input value={profile.bloodGroup} onChange={e => update('bloodGroup', e.target.value)} placeholder="e.g. A+" /></div>
         </Card>
 
